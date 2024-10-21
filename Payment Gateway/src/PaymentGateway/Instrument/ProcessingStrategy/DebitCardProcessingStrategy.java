@@ -11,6 +11,6 @@ public class DebitCardProcessingStrategy implements ProcessingStrategy<DebitCard
     @Override
     public boolean authenticate(DebitCard instrumentProvided) throws Exception {
         DebitCard dbInstrument = (DebitCard)instrumentRepository.getInstrument(instrumentProvided.getInstrumentId());
-        return dbInstrument.getPin().equals(((DebitCard) instrumentProvided).getPin());
+        return dbInstrument.getPin().equals((instrumentProvided).getPin());
     }
 }

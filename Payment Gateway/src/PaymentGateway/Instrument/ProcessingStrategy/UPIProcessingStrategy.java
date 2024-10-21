@@ -10,6 +10,6 @@ public class UPIProcessingStrategy implements ProcessingStrategy<UPI> {
     @Override
     public boolean authenticate(UPI instrumentProvided) {
         UPI dbInstrument =  (UPI)instrumentRepository.getInstrument(instrumentProvided.getInstrumentId());
-        return dbInstrument.getPin().equals(((UPI) instrumentProvided).getPin());
+        return dbInstrument.getPin().equals((instrumentProvided).getPin());
     }
 }
