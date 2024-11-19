@@ -2,7 +2,7 @@ package models;
 
 import java.util.UUID;
 
-public class Issue {
+public class Issue extends Observable{
     String id;
     String transactionId;
     IssueType issueType;
@@ -21,11 +21,12 @@ public class Issue {
     }
 
     public void markAsAssigned() {
-
+        this.notifyObservers("The issue with ID:" + this.id + " has been assigned to :" + this.assignedAgent.name);
     }
 
     public void markAsResolved() {
         this.issueStatus = IssueStatus.RESOLVED;
+        this.notifyObservers("The issue with ID:" + this.id + " has been marked as resolved.");
     }
 
     public String getId() {

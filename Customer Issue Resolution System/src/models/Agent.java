@@ -3,7 +3,7 @@ package models;
 import java.util.List;
 import java.util.UUID;
 
-public class Agent {
+public class Agent extends Observer {
     String id;
     String name;
     Issue currentIssue;

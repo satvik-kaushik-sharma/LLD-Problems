@@ -49,6 +49,7 @@ public class AgentService {
         if(assignedAgent.getCurrentIssue() != null) throw new Exception("Agent is not available");
         assignedAgent.setCurrentIssue(issue);
         issue.setAssignedAgent(assignedAgent);
+        issue.addObserver(assignedAgent);
     }
 
 
