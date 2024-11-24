@@ -6,14 +6,14 @@ import Elevator.Request;
 
 import java.util.*;
 
-public class ScanControlStrategyWithRequestDirection extends ElevatorControlStrategy {
+public class LookControlStrategyWithRequestDirection extends ElevatorControlStrategy {
     List<Request> pendingRequests; // change to incl directions or do I?
     PriorityQueue<Integer> minHeap;
     PriorityQueue<Integer> maxHeap;
     // TODO may need new strategy for filling heaps
     int currIdx = 0;
 
-    public ScanControlStrategyWithRequestDirection() {
+    public LookControlStrategyWithRequestDirection() {
         this.pendingRequests = new ArrayList<>();
         this.maxHeap = new PriorityQueue<Integer>(Collections.reverseOrder());
         this.minHeap = new PriorityQueue<Integer>();

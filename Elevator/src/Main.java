@@ -1,6 +1,6 @@
 import Elevator.*;
 import Elevator.AssignmentStrategy.DefaultAssignmentStrategy;
-import Elevator.ControlStrategy.ScanControlStrategyWithRequestDirection;
+import Elevator.ControlStrategy.LookControlStrategyWithRequestDirection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ public class Main {
         InternalDispatcher internalDispatcher = new InternalDispatcher();
         Elevator e1 = new Elevator(1, 5, internalDispatcher);
         Elevator e2 = new Elevator(2, 3, internalDispatcher);
-        ElevatorController elevatorController1 = new ElevatorController(e1, new ScanControlStrategyWithRequestDirection());
-        ElevatorController elevatorController2 = new ElevatorController(e2, new ScanControlStrategyWithRequestDirection());
+        ElevatorController elevatorController1 = new ElevatorController(e1, new LookControlStrategyWithRequestDirection());
+        ElevatorController elevatorController2 = new ElevatorController(e2, new LookControlStrategyWithRequestDirection());
         List<ElevatorController> controllerList = new ArrayList<ElevatorController>();
         controllerList.add(elevatorController1);
         controllerList.add(elevatorController2);
