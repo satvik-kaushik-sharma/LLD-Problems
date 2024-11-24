@@ -45,7 +45,6 @@ public class Main {
                     public void run() {
                         // your code here
                         externalDispatcher.submitRequest(5, Direction.UP);
-//                        externalDispatcher.handleNewRequest(6, null);
                         t.cancel();
                     }
                 },

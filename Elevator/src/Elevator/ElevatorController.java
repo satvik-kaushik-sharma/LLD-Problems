@@ -35,7 +35,10 @@ public class ElevatorController {
 //        by the strategy object only => should also send back
 //        nextFloor should also send direction in which lift is proceeding now
 //        why not just move currD into strategy too? - sounds good - double check
-        Integer nextFloor = this.controlStrategy.nextFloor(this.elevator.currentFloor, this.elevator.currentDirection);
+        ElevatorVector vector = this.controlStrategy.getNextFloorAndDirection(this.elevator.currentFloor, this.elevator.currentDirection);
+        Integer nextFloor = vector.getFloor();
+        Direction direction = vector.getDirection();
+        this.elevator.setCurrentDirection(direction);
         if (nextFloor != null) {
             this.moveElevatorTo(nextFloor);
         } else {
@@ -45,7 +48,6 @@ public class ElevatorController {
     }
 
     private void moveElevatorTo(Integer floor) {
-        this.elevator.updateDirection(floor);
         Helper.setTimeout(() -> {
             System.out.println("Elevator " + this.getElevator().elevatorId + " moved to Floor " + floor + " Direction -> " + this.getElevator().currentDirection);
             this.getElevator().currentFloor = floor;

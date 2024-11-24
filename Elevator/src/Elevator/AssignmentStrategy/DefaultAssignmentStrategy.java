@@ -25,7 +25,7 @@ public class DefaultAssignmentStrategy implements AssignmentStrategy {
     @Override
     public ElevatorController assignElevator(Integer floor, Direction direction) {
         ElevatorController e = elevatorControllers.get(0);
-        System.out.println("Elevator " + e.getElevator().elevatorId + " assigned to request at Floor " + floor);
+        System.out.println("Elevator " + e.getElevator().elevatorId + " assigned to request at Floor " + floor + " " + direction);
         return e;
     }
 }

@@ -1,6 +1,7 @@
 package Elevator.ControlStrategy;
 
 import Elevator.Direction;
+import Elevator.ElevatorVector;
 import Elevator.Request;
 
 import java.util.*;
@@ -37,27 +38,28 @@ public class ScanControlStrategyWithRequestDirection extends ElevatorControlStra
     }
 
     @Override
-    public Integer nextFloor(Integer currFloor, Direction currDir) {
+    public ElevatorVector getNextFloorAndDirection(Integer currFloor, Direction currDir) {
 //        System.out.println("Lift Dir: " + currDir);
 //        System.out.println("Max Heap (Down Dir Req being executed now): " + maxHeap);
 //        System.out.println("Min Heap (Up Dir Req being executed now): " + minHeap);
 //        System.out.println("Pending: " + pendingRequests);
         if (currDir.equals(Direction.IDLE)) {
             includePending(currFloor, currDir);
-            return this.maxHeap.isEmpty() ? this.minHeap.poll() : this.maxHeap.poll();
+            ElevatorVector vector =  this.maxHeap.isEmpty() ? new ElevatorVector(this.minHeap.poll(), Direction.UP) : new ElevatorVector(this.maxHeap.poll(), Direction.DOWN);
+            return vector;
         } else if (currDir.equals(Direction.UP)) {
-            if (this.minHeap.isEmpty()) {  //now elevator will change its direction
+            if (this.minHeap.isEmpty()) {  //now elevator will change its direction to DOWN
                 includePending(currFloor, Direction.DOWN);
-                return this.maxHeap.poll();
+                return new ElevatorVector(this.maxHeap.poll(), Direction.DOWN);
             } else {
-                return this.minHeap.poll();
+                return new ElevatorVector(this.minHeap.poll(), Direction.UP);
             }
         } else {
-            if (this.maxHeap.isEmpty()) {  //now elevator will change its direction
+            if (this.maxHeap.isEmpty()) {  //now elevator will change its direction to UP
                 includePending(currFloor, Direction.UP);
-                return this.minHeap.poll();
+                return new ElevatorVector(this.minHeap.poll(), Direction.UP);
             } else {
-                return this.maxHeap.poll();
+                return new ElevatorVector(this.maxHeap.poll(), Direction.DOWN);
             }
         }
     }
@@ -67,7 +69,7 @@ public class ScanControlStrategyWithRequestDirection extends ElevatorControlStra
         while (it.hasNext()) {
             Request req = it.next();
             if (currDir.equals(Direction.IDLE)) {
-                if (req.getFloor() > currFloor) {
+                if (req.getDirection().equals(Direction.DOWN)) {
                     this.maxHeap.add(req.getFloor());
                 } else {
                     this.minHeap.add(req.getFloor());
@@ -84,6 +86,5 @@ public class ScanControlStrategyWithRequestDirection extends ElevatorControlStra
             }
         }
     }
-
 
 }

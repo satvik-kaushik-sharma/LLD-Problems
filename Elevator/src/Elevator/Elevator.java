@@ -14,6 +14,10 @@ public class Elevator {
         this.internalDispatcher = internalDispatcher;
     }
 
+    public void setCurrentDirection(Direction currentDirection) {
+        this.currentDirection = currentDirection;
+    }
+
     public void updateDirection(Integer floor) {
 //        remove this logic
         if (this.currentFloor > floor) {

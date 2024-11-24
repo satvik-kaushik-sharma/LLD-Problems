@@ -1,6 +1,7 @@
 package Elevator.ControlStrategy;
 
 import Elevator.Direction;
+import Elevator.ElevatorVector;
 
 public abstract class ElevatorControlStrategy {
 
@@ -14,6 +15,6 @@ public abstract class ElevatorControlStrategy {
 
     ;
 
-    public abstract Integer nextFloor(Integer currFloor, Direction currDir);
+    public abstract ElevatorVector getNextFloorAndDirection(Integer currFloor, Direction currDir);
 
 }
